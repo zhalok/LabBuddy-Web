@@ -12,26 +12,32 @@ export default function NavBar() {
     <>
     <Navbar expand="lg" className='navbg px-4'>
       <Container fluid>
-        <Navbar.Brand href="/" className='text-light'>  Virtual Lab</Navbar.Brand>
+        <Navbar.Brand href="/" className='text-light'>  Lab Buddy</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0 text-light"
+            className="my-2 my-lg-0 text-light"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
             <Nav.Link href="/" className='text-light'>  Home</Nav.Link>
-            <Nav.Link href="/" className='text-light'>  Link</Nav.Link>
+            <Nav.Link href="/tas" className='text-light'>  Class</Nav.Link>
+            <Nav.Link href="/" className='text-light'>  Lab</Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex mx-auto">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2 rounded-pill"
               aria-label="Search"
             />
-            <Button variant="outlie-white" className='text-light   btn-outline-light'>  Search</Button>
+           
           </Form>
+
+      
+      <button type="" className='btn  px-4 py-2 me-2 btn-light '>Log In</button>
+      <button type="" className='btn px-4 py-2 text-light btn-outline-light '>Sign Up</button>
+    
         </Navbar.Collapse>
       </Container>
     </Navbar>
