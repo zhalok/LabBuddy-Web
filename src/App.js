@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import './App.css';
 import Home from './Components/Home/Home';
@@ -29,7 +29,6 @@ function App() {
         <Route path="/dashboard" element={<Dashboard></Dashboard>} />
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<Signup></Signup>} />
-
 
         <Route path="/spring" element={<Spring />} />
         <Route path="/hall" element={<Hall />} />
