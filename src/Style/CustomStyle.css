@@ -20,6 +20,10 @@
     background-color: #6610f2;
     color: white;
 }
+.btn-theme-dark{
+    background-color: #9500ff;
+    color: white;
+}
 .text-theme{
     color: #6610f2;
 }
@@ -27,6 +31,11 @@
 
     background-color:  #6610f2;
 }
+.bg-theme-light{
+
+    background-color:  #e9dcff;
+}
+
 .outline-theme{
     border: #6610f2 solid 1px;
 }
@@ -46,4 +55,36 @@
     width: 100%;
     height: 800px;
     background-image: linear-gradient(6deg, rgba(0, 0, 0,0.02) 0%, rgba(0, 0, 0,0.02) 39%,transparent 39%, transparent 74%,rgba(117, 117, 117,0.02) 74%, rgba(117, 117, 117,0.02) 100%),linear-gradient(129deg, rgba(222, 222, 222,0.02) 0%, rgba(222, 222, 222,0.02) 65%,transparent 65%, transparent 73%,rgba(83, 83, 83,0.02) 73%, rgba(83, 83, 83,0.02) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+}
+
+.w-15{
+    width: 250px;
+    height: 900px;
+}
+
+/* login */
+.mex{
+    margin-top:10%;
+    margin-bottom: 10%;
+}
+.marginXl{
+    margin-top:10%;
+    margin-bottom:20%;
+}
+
+.btn-bg-theme{
+        background-color: #0093c4 !important;
+}
+.border-theme{
+    border-bottom: #6610f2 3px solid;
+}
+
+/* sign up */
+.marginXll{
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+
+.magic{
+    background-image: linear-gradient(12deg, rgba(193, 193, 193,0.05) 0%, rgba(193, 193, 193,0.05) 2%,rgba(129, 129, 129,0.05) 2%, rgba(129, 129, 129,0.05) 27%,rgba(185, 185, 185,0.05) 27%, rgba(185, 185, 185,0.05) 66%,rgba(83, 83, 83,0.05) 66%, rgba(83, 83, 83,0.05) 100%),linear-gradient(321deg, rgba(240, 240, 240,0.05) 0%, rgba(240, 240, 240,0.05) 13%,rgba(231, 231, 231,0.05) 13%, rgba(231, 231, 231,0.05) 34%,rgba(139, 139, 139,0.05) 34%, rgba(139, 139, 139,0.05) 71%,rgba(112, 112, 112,0.05) 71%, rgba(112, 112, 112,0.05) 100%),linear-gradient(236deg, rgba(189, 189, 189,0.05) 0%, rgba(189, 189, 189,0.05) 47%,rgba(138, 138, 138,0.05) 47%, rgba(138, 138, 138,0.05) 58%,rgba(108, 108, 108,0.05) 58%, rgba(108, 108, 108,0.05) 85%,rgba(143, 143, 143,0.05) 85%, rgba(143, 143, 143,0.05) 100%),linear-gradient(96deg, rgba(53, 53, 53,0.05) 0%, rgba(53, 53, 53,0.05) 53%,rgba(44, 44, 44,0.05) 53%, rgba(44, 44, 44,0.05) 82%,rgba(77, 77, 77,0.05) 82%, rgba(77, 77, 77,0.05) 98%,rgba(8, 8, 8,0.05) 98%, rgba(8, 8, 8,0.05) 100%),linear-gradient(334deg, hsl(247,0%,2%),hsl(247,0%,2%));
 }
