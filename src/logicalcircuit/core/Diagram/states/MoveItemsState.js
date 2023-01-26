@@ -182,6 +182,8 @@ export default class MoveItemsState extends AbstractDisplacementState {
     // Allow moving only with left clicks
     if (event.event.nativeEvent.which !== 1) return;
 
+    // alert("Move")
+
     const currentDisplacement = snap(
       new Point(
         event.virtualDisplacementX,

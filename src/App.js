@@ -6,8 +6,13 @@ import NavBar from './Components/NavBar/NavBar';
 import Spring from './Spring'
 import Hall from './Hall'
 import LogicCircuit from './logicalcircuit/page/App'
+import { useEffect } from 'react';
+import {v4} from 'uuid';
 
 function App() {
+  localStorage.setItem('User',v4())
+  
+  
   return (
     <div className="App">
      <BrowserRouter>

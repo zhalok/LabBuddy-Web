@@ -1,5 +1,5 @@
 {
-  "name": "@logossim/page",
+  "name": "@logicalcircuit/page",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
-    "@logossim/core": "0.0.1",
-    "@logossim/components": "0.0.1"
+    "@logicalcircuit/core": "0.0.1",
+    "@logicalcircuit/components": "0.0.1"
   },
   "browserslist": {
     "production": [
