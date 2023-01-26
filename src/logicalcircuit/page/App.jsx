@@ -512,7 +512,7 @@ export default class App extends Component {
     } = this.state;
 
     return (
-      <>
+      <div className='logicalcircuit'>
         <Titlebar
           circuitName={circuitName}
           isCircuitNameFocused={isCircuitNameFocused}
@@ -604,7 +604,7 @@ export default class App extends Component {
           timeout={snackbar.timeout}
           handleClose={this.hideSnackbar}
         />
-      </>
+      </div>
     );
   }
 }
