@@ -1,0 +1,86 @@
+import React from 'react';
+
+import { Port } from '../../core';
+
+import styled from 'styled-components';
+
+const PositionedPort = styled(Port)`
+  position: absolute;
+  right: -7px;
+`;
+
+export const Shape = styled.div`
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  background: ${props =>
+    props.selected
+      ? 'var(--body-selected)'
+      : 'var(--body-unselected)'};
+  border: 2px solid
+    ${props =>
+      props.selected
+        ? 'var(--border-selected)'
+        : 'var(--border-unselected)'};
+
+  transition: 100ms linear;
+`;
+
+export const Decoration = ({
+  isActive,
+  color,
+  periodMs,
+  animateTransition,
+}) => (
+  <svg
+    width={30}
+    height={30}
+    viewBox="0 0 7.9374997 7.9375003"
+    strokeWidth="1"
+  >
+    <path
+      data-testid="decoration"
+      stroke={color}
+      strokeWidth={0.75}
+      fill="none"
+      style={{
+        transform: isActive ? 'scaleX(1)' : 'scaleX(-1)',
+        transformOrigin: 'center',
+        transition: animateTransition
+          ? `calc(${periodMs}ms / 2 * 0.4) ease-in-out`
+          : 'none',
+      }}
+      d="M 1.8683545,4.4337648 V 6.14192 H 4.0062447 V 1.79558 h 2.0629007 v 1.7578226"
+    />
+  </svg>
+);
+
+const ClockWidget = props => {
+  const { model } = props;
+  const {
+    options: { selected },
+    periodMs,
+  } = model;
+
+  const out = model.getPort('out');
+
+  return (
+    <Shape selected={selected}>
+      <PositionedPort name="out" />
+      <Decoration
+        isActive={model.isActive()}
+        color={out.getColor()}
+        periodMs={periodMs}
+        animateTransition={periodMs >= 500}
+      />
+    </Shape>
+  );
+};
+
+export default ClockWidget;
