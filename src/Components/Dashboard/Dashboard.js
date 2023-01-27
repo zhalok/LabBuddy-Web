@@ -9,16 +9,17 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import DashboardPage from "../DashboardPage/DashboardPage";
 import ClassPage from "../ClassPage/ClassPage";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function Dashboard(props) {
   const [ui, setUi] = useState("dashboard");
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!props.loggedIn) {
-  //     navigate("/login");
-  //     // return;
-  //   }
-  // });
+  useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      navigate("/login");
+    }
+  }, []);
 
 import React, { useState } from 'react'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
