@@ -6,9 +6,14 @@ import Hook from './component/Hook';
 import Wall from './component/Wall';
 import * as THREE from 'three';
 import { useRef } from 'react';
+import { io } from "socket.io-client";
+
+const ENDPOINT = "http://localhost:5000";
+var socket;
 
 
 export default function Spring() {
+  const user = localStorage.getItem('User')
   let x = 0, y = 0, dy = 0.0005, requestID, requestSHM, K = 500;
   let initPos = 13.2;
   let reflineGeometry = new THREE.BufferGeometry().setFromPoints(
@@ -23,6 +28,61 @@ export default function Spring() {
   const forceLabel = useRef();
   const ForceMeassureRef = useRef();
   const ForceMeassure2Ref = useRef();
+  const [simu, setSimu] = useState(null)
+
+  const [mousePos, setMousePos] = useState({});
+  const [socketConnected, setSocketConnected] = useState(false)
+  const [kVal, setkVal] = useState(500)
+  const [M, setM] = useState(0);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.on("connected", () => console.log('Socket'));
+    socket.emit("setup", user);
+  }, [])
+
+  useEffect(() => {
+    socket.on("received K", (k) => {
+
+      params.kConst = Number(k)
+      setkVal(Number(k))
+    });
+
+    socket.on('load', () => window.location.reload(false))
+    socket.on('mouseback', (data) => {
+      if (user !== data.user) {
+        setMousePos(data.mousePos)
+        console.log(mousePos, data)
+        setSimu(data.user)
+      }
+    })
+
+
+  })
+
+
+
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      
+      setMousePos({ x: event.clientX, y: event.clientY });
+      socket.emit('mouse', { mousePos: { x: event.clientX, y: event.clientY }, user })
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener(
+        'mousemove',
+        handleMouseMove
+      );
+    };
+  }, []);
+
+
+
+
 
 
   const [params, setParams] = useState({
@@ -50,6 +110,7 @@ export default function Spring() {
 
 
   const handleMassChange = (val) => {
+    socket.emit('Open Dropdown', { val, user })
     setDisVal(0.0)
     setMass(val)
     params.m = val
@@ -76,6 +137,38 @@ export default function Spring() {
     }
 
   }
+
+  useEffect(() => {
+    socket.on('dropdown open', (data) => {
+
+      if (user !== data.user) {
+        setDisVal(0.0)
+        setMass(data.val)
+        params.m = data.val
+        setParams(params)
+
+        y = 0;
+        cancelAnimationFrame(requestSHM);
+        cancelAnimationFrame(requestID);
+        K = params.m / (1200 + params.kConst)
+
+
+
+        if (params.harmonic) {
+          weightRef.current.scale.y = 1 + params.m / 10
+          K = (params.m) / (1200 + params.kConst);
+          params.T = timePeriod()
+          setParams(params)
+
+          harmonicVerical();
+        } else {
+          weightRef.current.scale.y = 1 + data.val / 10
+          weightAction();
+        }
+      }
+    })
+  }, [params])
+
 
   function springCurve(b) {
     // Create an empty array to stores the points
@@ -184,13 +277,26 @@ export default function Spring() {
   }
 
 
+  console.log(mousePos)
+
 
 
   return (
-    <div style={{backgroundColor:'white'  }}>
+    <div style={{ backgroundColor: 'white' }}>
+      {(simu && simu !== user) &&
+        <h2
+          style={{
+            position: "absolute",
+            left: `${mousePos.x}px`,
+            top: `${mousePos.y}px`,
+          }}
+        >
+          GeeksforGeeks
+        </h2>
+      }
 
       <Canvas
-        
+
         id='scene'
         style={{ height: window.innerHeight, width: window.innerWidth }}
         camera={{ fov: 50, zoom: 0.9, near: 0.1, far: 1500, position: [-40, -5, 20] }}
@@ -283,7 +389,12 @@ export default function Spring() {
             <form>
               <div class="mb-3" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold', width: 200 }}>k (N/m)</label>
-                <input type="number" class="form-control" id="exampleInputNumber1" aria-describedby="numberHelp" value={K} />
+                <input type="number" class="form-control" name="kConst" id="exampleInputNumber1" aria-describedby="numberHelp" value={kVal} onChange={e => {
+
+                  setParams(params => ({ ...params, [e.target.name]: Number(e.target.value) }))
+                  socket.emit('new K', e.target.value)
+                  setkVal(e.target.value)
+                }} />
               </div>
               <div class="mb-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <label for="dropdownMenuButton1" class="form-label" style={{ fontWeight: 'bold', marginRight: 30 }}>Mass (kg)</label>
@@ -303,7 +414,10 @@ export default function Spring() {
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">Reset</button>
+              <button type="submit" class="btn btn-primary" onClick={() => {
+                window.location.reload(false);
+                socket.emit('reload')
+              }}>Reset</button>
             </form>
           </div>
         </Html>
