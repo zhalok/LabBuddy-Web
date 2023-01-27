@@ -7,7 +7,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import QuizIcon from '@mui/icons-material/Quiz';
 import DashboardPage from '../DashboardPage/DashboardPage';
 import ClassPage from '../ClassPage/ClassPage';
-
+import LabPage from '../LabPage/LabPage';
+import ExamPage from '../ExanPage/ExamPage';
 
 
 export default function Dashboard() {
@@ -43,8 +44,13 @@ export default function Dashboard() {
             }
             {
                ui==='class'&&<ClassPage></ClassPage>
-              
-              
+               
+            }
+            {
+               ui==='lab'&&<LabPage></LabPage>
+            }
+            {
+              ui==='exam'&&<ExamPage></ExamPage>
             }
 
 

@@ -13,7 +13,7 @@ export default function NavBar() {
     <>
     <Navbar expand="lg" className='navbg px-4'>
       <Container fluid>
-        <Navbar.Brand href="/" className='text-light fw-bold'>  Lab Buddy</Navbar.Brand>
+        <Navbar.Brand href="/" className='text-light fw-bold fs-4'>  Lab Buddy</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -22,8 +22,9 @@ export default function NavBar() {
             navbarScroll
           >
             <Nav.Link href="/" className='text-light'>  Home</Nav.Link>
-            <Nav.Link href="/tas" className='text-light'>  Class</Nav.Link>
+            <Nav.Link href="/dashboard" className='text-light'>  Class</Nav.Link>
             <Nav.Link href="/dashboard" className='text-light'>  Lab</Nav.Link>
+            <Nav.Link href="/dashboard" className='text-light'>  Exam</Nav.Link>
           </Nav>
           <Form className="d-flex mx-auto rounded-pill bg-light rounded-pill">
             <Form.Control
