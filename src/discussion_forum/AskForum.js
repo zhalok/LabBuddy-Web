@@ -30,7 +30,7 @@ export default function AskForum() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Ask Forum
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Ask Any Question</DialogTitle>

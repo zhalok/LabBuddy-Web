@@ -30,7 +30,7 @@ export default function AskQuestion() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        + Ask Questions
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Ask Any Question</DialogTitle>
