@@ -7,7 +7,18 @@ import Row from 'react-bootstrap/Row';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import temp from '../../Image/temp.png'
 import fileup from '../../Image/fileup.png'
-const fileurl = 'https://drive.google.com/drive/u/0/folders/1g2p3LXh-szlLYkTB-gnyuDw9P5JopXUC?fbclid=IwAR1T-6GGYst4isi27VA-ri5xh9qthF4UlxjOeNKPzCPHGXyqwlfhk44u4TA/hacknsu.jpg'
+import DragAndUpload from '../DragAndUpload/DragAndUpload';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+const fileurl = 'https://drive.google.com/drive/folders/1-WT8AqKy5GNmuy5lPcIWEoeYvfGzmJkF?usp=share_link'
+
+// const openInNewTab = (url) => {
+//   const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+//   if (newWindow) newWindow.opener = null
+// }
+
+// //Then add to your onClick
+// onClick={() => openInNewTab('https://stackoverflow.com')}
+
 
 
 export default function ExamModal(props) {
@@ -34,12 +45,15 @@ export default function ExamModal(props) {
         <Container>
           <Row>
             <Col md={6}>
-                <img src={temp} alt="" className="mx-auto" width="120px" height="130px"/>
-              <button className="my-3 btn-theme btn w-100 text-light" onClick={()=>(downloadFile(fileurl))}>Question Templete</button>
+                <img src={temp} alt="" className="mx-auto ps-4" width="160px" height="150px"/>
+              <button className="my-3 btn-theme btn w-100 text-light"  onClick={()=>(downloadFile(fileurl))}> <div className='d-flex'>
+              <FileDownloadIcon className='mx-2'/>  <h6 className='my-auto'>Question Templete</h6>
+              </div> </button>
             </Col>
             <Col md={6}>
-            <img src={fileup} alt="" className="mx-auto" width="120px" height="130px"/>
-             <button className="my-3 btn-theme btn w-100  text-light">Upload Question File</button>
+            {/* <img src={fileup} alt="" className="mx-auto" width="120px" height="130px"/> */}
+              <DragAndUpload></DragAndUpload>
+            
             </Col>
           </Row>
 
