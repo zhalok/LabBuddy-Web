@@ -1,25 +1,3 @@
-
-import React, { useEffect, useState } from "react";
-import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import BiotechIcon from "@mui/icons-material/Biotech";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import InfoIcon from "@mui/icons-material/Info";
-import QuizIcon from "@mui/icons-material/Quiz";
-import DashboardPage from "../DashboardPage/DashboardPage";
-import ClassPage from "../ClassPage/ClassPage";
-import { useNavigate } from "react-router-dom";
-
-export default function Dashboard(props) {
-  const [ui, setUi] = useState("dashboard");
-  const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!props.loggedIn) {
-  //     navigate("/login");
-  //     // return;
-  //   }
-  // });
-
 import React, { useState } from 'react'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
