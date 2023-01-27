@@ -1,22 +1,27 @@
-
-import React, { useState } from 'react'
-import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import BiotechIcon from '@mui/icons-material/Biotech';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import InfoIcon from '@mui/icons-material/Info';
-import QuizIcon from '@mui/icons-material/Quiz';
-import DashboardPage from '../DashboardPage/DashboardPage';
-import ClassPage from '../ClassPage/ClassPage';
-import LabPage from '../LabPage/LabPage';
-import ExamPage from '../ExanPage/ExamPage';
-
+import React, { useEffect, useState } from "react";
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import BiotechIcon from "@mui/icons-material/Biotech";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import InfoIcon from "@mui/icons-material/Info";
+import QuizIcon from "@mui/icons-material/Quiz";
+import DashboardPage from "../DashboardPage/DashboardPage";
+import ClassPage from "../ClassPage/ClassPage";
+import LabPage from "../LabPage/LabPage";
+import ExamPage from "../ExanPage/ExamPage";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function Dashboard() {
+  const [ui, setUi] = useState("dashboard");
+  const naviage = useNavigate();
 
-  const [ui,setUi]=useState('dashboard');
-
-
+  useEffect(() => {
+    const jwt = Cookies.get("jwt");
+    if (!jwt) {
+      naviage("/login");
+    }
+  });
 
   return (
     <div>
