@@ -10,6 +10,10 @@ import "../../Style/CustomStyle.css";
 
 export default function NavBar(props) {
   return (
+
+
+   
+
     <div>
       <Navbar expand="lg" className="navbg px-4">
         <Container fluid>
