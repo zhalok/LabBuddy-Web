@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -18,6 +19,24 @@ export default function Dashboard(props) {
   //     // return;
   //   }
   // });
+
+import React, { useState } from 'react'
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import BiotechIcon from '@mui/icons-material/Biotech';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import InfoIcon from '@mui/icons-material/Info';
+import QuizIcon from '@mui/icons-material/Quiz';
+import DashboardPage from '../DashboardPage/DashboardPage';
+import ClassPage from '../ClassPage/ClassPage';
+import LabPage from '../LabPage/LabPage';
+import ExamPage from '../ExanPage/ExamPage';
+
+
+export default function Dashboard() {
+
+  const [ui,setUi]=useState('dashboard');
+
 
   return (
     <div>
@@ -93,6 +112,23 @@ export default function Dashboard(props) {
         <div className="w-100 b-light text-start p-4">
           {ui === "dashboard" && <DashboardPage></DashboardPage>}
           {ui === "class" && <ClassPage></ClassPage>}
+
+            {
+              ui==='dashboard'&&<DashboardPage></DashboardPage>
+              
+            }
+            {
+               ui==='class'&&<ClassPage></ClassPage>
+               
+            }
+            {
+               ui==='lab'&&<LabPage></LabPage>
+            }
+            {
+              ui==='exam'&&<ExamPage></ExamPage>
+            }
+
+
         </div>
       </div>
     </div>
