@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import '../Style/CustomStyle.css'
 import { MuiChipsInput } from 'mui-chips-input'
 
 
@@ -39,7 +40,7 @@ export default function AskForum() {
           <ReactQuill theme="snow" value={value} onChange={setValue} style={{width:500,fontSize:20}} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button className='bg-theme text-theme' onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>
         </DialogActions>
       </Dialog>

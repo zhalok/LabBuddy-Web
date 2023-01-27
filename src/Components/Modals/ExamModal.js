@@ -43,12 +43,22 @@ export default function ExamModal(props) {
             </Col>
           </Row>
 
-          <Row>
+          <Row className='mb-4 mt-3'> 
             <Col xs={6} md={6}>
-              <h6>Set Time </h6><input type="text" className="w-100" placeholder="Ex: 30 Min "></input> 
+              <h6 className=" fw-bold">Exam Title</h6><input type="text" className="w-100" placeholder="Ex: Physics "></input> 
             </Col>
             <Col xs={6} md={6}>
-             <h6>Set Expire Time</h6>
+             <h6 className=" fw-bold">Topic</h6>
+             <input type="text" className="w-100" placeholder="Ex: Wave"></input>
+            </Col>
+            
+          </Row>
+          <Row className='mb-3'>
+            <Col xs={6} md={6}>
+              <h6 className=" fw-bold">Set Time </h6><input type="text" className="w-100" placeholder="Ex: 30 Min "></input> 
+            </Col>
+            <Col xs={6} md={6}>
+             <h6 className=" fw-bold">Set Expire Time</h6>
              <input type="text" className="w-100" placeholder="Ex: 6 Hour "></input>
             </Col>
             
@@ -56,7 +66,7 @@ export default function ExamModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="btn-theme  theme-light px-4" onClick={props.onHide}> Submit</Button>
+        <Button className="btn-theme  theme-light px-4 me-3" onClick={props.onHide}> Submit</Button>
       </Modal.Footer>
     </Modal>
       

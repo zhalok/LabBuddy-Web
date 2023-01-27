@@ -9,6 +9,8 @@ import DashboardPage from '../DashboardPage/DashboardPage';
 import ClassPage from '../ClassPage/ClassPage';
 import LabPage from '../LabPage/LabPage';
 import ExamPage from '../ExanPage/ExamPage';
+import Forum from '../../discussion_forum/Forum';
+import QuestionUI from '../../QuestionAkash/QuestionUI';
 
 
 export default function Dashboard() {
@@ -33,6 +35,10 @@ export default function Dashboard() {
               setUi("exam")}}> <div className="d-flex "><QuizIcon className='me-2'/> Exam </div> </button>
             <button className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100" onClick={()=>{
               setUi("pricing")}}> <div className="d-flex "><MonetizationOnIcon className='me-2'/> Pricing </div> </button>
+               <button className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100" onClick={()=>{
+              setUi("forum")}}> <div className="d-flex "><MonetizationOnIcon className='me-2'/> Forum </div> </button>
+               <button className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100" onClick={()=>{
+              setUi("question")}}> <div className="d-flex "><MonetizationOnIcon className='me-2'/> Questions</div> </button>
             <button className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100" onClick={()=>{
               setUi("about")}}> <div className="d-flex"><InfoIcon className='me-2'/> About Us </div> </button>
             </div>
@@ -51,6 +57,12 @@ export default function Dashboard() {
             }
             {
               ui==='exam'&&<ExamPage></ExamPage>
+            }
+             {
+              ui==='forum'&&<Forum></Forum>
+            }
+             {
+              ui==='question'&&<QuestionUI></QuestionUI>
             }
 
 

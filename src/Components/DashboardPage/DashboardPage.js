@@ -8,7 +8,7 @@ export default function DashboardPage() {
   return (
     <>
       <div>
-        <h2 className="p-2 my-4 border-bottom fs-3 fw-bold">Your Classes</h2>
+        <h2 className="py-2 my-5 border-bottom fs-3 fw-bold">Your Classes</h2>
       </div> 
       <div className="d-flex gap-4 flex-wrap">
         {DashboardClasses.map((card) => (
@@ -31,8 +31,8 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div>
-        <h2 className="p-2 my-5 fs-3 fw-bold border-bottom">Your Labs</h2>
+      <div className="pt-5">
+        <h2 className="py-2 my-5 fs-3 fw-bold border-bottom">Your Labs</h2>
       </div> 
       <div className="d-flex gap-4 flex-wrap">
         {DashboardLabs.map((card) => (
@@ -56,8 +56,8 @@ export default function DashboardPage() {
       </div>
 
       {/* for exams */}
-      <div>
-        <h2 className="p-2 my-5 fs-3 fw-bold border-bottom">Your Exams</h2>
+      <div className="pt-5">
+        <h2 className="py-2 my-5 fs-3 fw-bold border-bottom">Your Exams</h2>
       </div> 
       <div className="d-flex gap-4 flex-wrap mb-5">
         {DashboardExams.map((card) => (

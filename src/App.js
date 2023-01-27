@@ -8,7 +8,9 @@ import TeacherAndStudentUI from "./Components/TeacherAndStudentUI/TeacherAndStud
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
-
+import {v4} from 'uuid';
+import Forum from './discussion_forum/Forum'
+import Questions from './question_bank/Questions'
 import Spring from "./Spring";
 import Hall from "./Hall";
 import LogicCircuit from "./logicalcircuit/page/App";
@@ -33,7 +35,7 @@ function App() {
           <Route path="/spring" element={<Spring />} />
           <Route path="/hall" element={<Hall />} />
           <Route path="/circuit" element={<LogicCircuit />} />
-          <Route path="/question" element={<Questions />} />
+          <Route path="/question" element={<Questions/>} />
           <Route path="/forum" element={<Forum />} />
         </Routes>
         <Footer></Footer>
