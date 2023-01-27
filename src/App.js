@@ -34,9 +34,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard></Dashboard>} />
           <Route path="/login" element={<Login></Login>} />
           <Route path="/signup" element={<Signup></Signup>} />
-          <Route path="/spring" element={<Spring />} />
-          <Route path="/hall" element={<Hall />} />
-          <Route path="/circuit" element={<LogicCircuit />} />
+          <Route path="/spring/:id" element={<Spring />} />
+          <Route path="/hall/:id" element={<Hall />} />
+          <Route path="/circuit/:id" element={<LogicCircuit />} />
           <Route path="/question" element={<Questions />} />
           <Route path="/forum" element={<Forum />} />
         </Routes>

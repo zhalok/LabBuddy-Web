@@ -4,6 +4,8 @@ import gate from "../../Image/lab/gate.png";
 import hall from "../../Image/lab/halleffect.png";
 import sp from "../../Image/lab/spring.png";
 import {useNavigate} from 'react-router-dom'
+import {v4} from 'uuid'
+
 
 export default function LabPage() {
   const navigate=useNavigate()
@@ -15,7 +17,7 @@ export default function LabPage() {
       <div className="d-flex flex-wrap gap-4">
 
 
-      <div className="d-flex gap-4 flex-wrap" onClick={()=>navigate('/spring')}>
+      <div className="d-flex gap-4 flex-wrap" style={{cursor:'pointer'}} onClick={()=>navigate('/spring/12345')}>
         <div className="card rounded shadow-lg">
           <div className="">
             <img
@@ -46,7 +48,7 @@ export default function LabPage() {
       </div>
 
 
-      <div className="d-flex gap-4 flex-wrap" onClick={()=>navigate('/hall')}>
+      <div className="d-flex gap-4 flex-wrap" style={{cursor:'pointer'}} onClick={()=>navigate('/hall/6789')}>
         <div className="card rounded shadow-lg">
           <div className="">
             <img
@@ -79,7 +81,7 @@ export default function LabPage() {
 
 
 
-      <div className="d-flex gap-4 flex-wrap" onClick={()=>navigate('/circuit')}>
+      <div className="d-flex gap-4 flex-wrap" style={{cursor:'pointer'}} onClick={()=>navigate('/circuit/10111213')}>
         <div className="card rounded shadow-lg">
           <div className="">
             <img

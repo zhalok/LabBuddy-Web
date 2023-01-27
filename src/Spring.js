@@ -7,13 +7,28 @@ import Wall from './component/Wall';
 import * as THREE from 'three';
 import { useRef } from 'react';
 import { io } from "socket.io-client";
+import { useParams } from 'react-router-dom'
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+import image from './assets/Cursor.png'
 
 const ENDPOINT = "http://localhost:5000";
 var socket;
 
+const users = [
+  { id: "63d3a8c1f1766a395e76e6df", name: "RAbi Islam", email: "rabi@gmail.com", password: "$2b$10$npWoqiuPzMIIa.1rmTklFu7bOq.gf2wqo0lW/iFe36Oh8NDzUsZr6", type: "general", "verified": false, "__v": 0 },
+  { id: "63d3bbcdf182143e87617d25", name: "Mahin", email: "mahin@gmail.com", password: "$2b$10$/J0hL4TZGmEbCv6ZaQJPOe3TY.5HOjzLeu.ntZYYxiqkQAew2PBda", type: "teacher", "verified": false, "__v": 0 }
+]
+
 
 export default function Spring() {
-  const user = localStorage.getItem('User')
+  const jwt = Cookies.get('jwt')
+  const user = jwtDecode(jwt)
+
+  const { id } = useParams();
+  useEffect(() => {
+
+  }, [id])
   let x = 0, y = 0, dy = 0.0005, requestID, requestSHM, K = 500;
   let initPos = 13.2;
   let reflineGeometry = new THREE.BufferGeometry().setFromPoints(
@@ -28,7 +43,7 @@ export default function Spring() {
   const forceLabel = useRef();
   const ForceMeassureRef = useRef();
   const ForceMeassure2Ref = useRef();
-  const [simu, setSimu] = useState(null)
+  const [simu, setSimu] = useState(user)
 
   const [mousePos, setMousePos] = useState({});
   const [socketConnected, setSocketConnected] = useState(false)
@@ -39,6 +54,7 @@ export default function Spring() {
     socket = io(ENDPOINT);
     socket.on("connected", () => console.log('Socket'));
     socket.emit("setup", user);
+    socket.emit("join lab", id)
   }, [])
 
   useEffect(() => {
@@ -50,11 +66,9 @@ export default function Spring() {
 
     socket.on('load', () => window.location.reload(false))
     socket.on('mouseback', (data) => {
-      if (user !== data.user) {
-        setMousePos(data.mousePos)
-        console.log(mousePos, data)
-        setSimu(data.user)
-      }
+      setMousePos(data.mousePos)
+      console.log(mousePos, data)
+      setSimu(data.user)
     })
 
 
@@ -65,9 +79,9 @@ export default function Spring() {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      
+
       setMousePos({ x: event.clientX, y: event.clientY });
-      socket.emit('mouse', { mousePos: { x: event.clientX, y: event.clientY }, user })
+      socket.emit('mouse', { mousePos: { x: event.clientX, y: event.clientY }, user, users })
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -110,7 +124,7 @@ export default function Spring() {
 
 
   const handleMassChange = (val) => {
-    socket.emit('Open Dropdown', { val, user })
+    socket.emit('Open Dropdown', { val, user, users })
     setDisVal(0.0)
     setMass(val)
     params.m = val
@@ -141,7 +155,7 @@ export default function Spring() {
   useEffect(() => {
     socket.on('dropdown open', (data) => {
 
-      if (user !== data.user) {
+      if (user.id !== data.user.id) {
         setDisVal(0.0)
         setMass(data.val)
         params.m = data.val
@@ -277,23 +291,32 @@ export default function Spring() {
   }
 
 
-  console.log(mousePos)
+
+  const handleChange = (e) => {
+    console.log(users)
+
+    setParams(params => ({ ...params, [e.target.name]: Number(e.target.value) }))
+    socket.emit('new K', { users, user, k: e.target.value })
+    setkVal(e.target.value)
+  }
 
 
 
   return (
     <div style={{ backgroundColor: 'white' }}>
-      {(simu && simu !== user) &&
+      {users.map(ur =>
+
         <h2
           style={{
             position: "absolute",
             left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
+            zIndex:10
           }}
         >
-          GeeksforGeeks
+          {ur.id!==user.id&&<img src={image} alt="" width={100} height={100} />}
         </h2>
-      }
+      )}
 
       <Canvas
 
@@ -389,12 +412,7 @@ export default function Spring() {
             <form>
               <div class="mb-3" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <label for="exampleInputEmail1" class="form-label" style={{ fontWeight: 'bold', width: 200 }}>k (N/m)</label>
-                <input type="number" class="form-control" name="kConst" id="exampleInputNumber1" aria-describedby="numberHelp" value={kVal} onChange={e => {
-
-                  setParams(params => ({ ...params, [e.target.name]: Number(e.target.value) }))
-                  socket.emit('new K', e.target.value)
-                  setkVal(e.target.value)
-                }} />
+                <input type="number" class="form-control" name="kConst" id="exampleInputNumber1" aria-describedby="numberHelp" value={kVal} onChange={handleChange} />
               </div>
               <div class="mb-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <label for="dropdownMenuButton1" class="form-label" style={{ fontWeight: 'bold', marginRight: 30 }}>Mass (kg)</label>
