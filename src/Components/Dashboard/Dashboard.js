@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -14,6 +15,7 @@ import ExamPage from '../ExanPage/ExamPage';
 export default function Dashboard() {
 
   const [ui,setUi]=useState('dashboard');
+
 
 
   return (
@@ -91,22 +93,10 @@ export default function Dashboard() {
           {ui === "dashboard" && <DashboardPage></DashboardPage>}
           {ui === "class" && <ClassPage></ClassPage>}
 
-            {
-              ui==='dashboard'&&<DashboardPage></DashboardPage>
-              
-            }
-            {
-               ui==='class'&&<ClassPage></ClassPage>
-               
-            }
-            {
-               ui==='lab'&&<LabPage></LabPage>
-            }
-            {
-              ui==='exam'&&<ExamPage></ExamPage>
-            }
-
-
+          {ui === "dashboard" && <DashboardPage></DashboardPage>}
+          {ui === "class" && <ClassPage></ClassPage>}
+          {ui === "lab" && <LabPage></LabPage>}
+          {ui === "exam" && <ExamPage></ExamPage>}
         </div>
       </div>
     </div>
