@@ -9,13 +9,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import "../../Style/CustomStyle.css";
 
 export default function NavBar(props) {
-  console.log(props.loggedIn);
   return (
-    <>
-
+    <div>
       <Navbar expand="lg" className="navbg px-4">
         <Container fluid>
-          <Navbar.Brand href="/" className="text-light fw-bold">
+          <Navbar.Brand href="/" className="text-light fw-bold fs-4">
             {" "}
             Lab Buddy
           </Navbar.Brand>
@@ -30,13 +28,17 @@ export default function NavBar(props) {
                 {" "}
                 Home
               </Nav.Link>
-              <Nav.Link href="/tas" className="text-light">
+              <Nav.Link href="/dashboard" className="text-light">
                 {" "}
                 Class
               </Nav.Link>
               <Nav.Link href="/dashboard" className="text-light">
                 {" "}
                 Lab
+              </Nav.Link>
+              <Nav.Link href="/dashboard" className="text-light">
+                {" "}
+                Exam
               </Nav.Link>
             </Nav>
             <Form className="d-flex mx-auto rounded-pill bg-light rounded-pill">
@@ -48,32 +50,6 @@ export default function NavBar(props) {
               />
               <SearchIcon className="my-auto p-1 mx-2" />
             </Form>
-
-    <Navbar expand="lg" className='navbg px-4'>
-      <Container fluid>
-        <Navbar.Brand href="/" className='text-light fw-bold fs-4'>  Lab Buddy</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="my-2 my-lg-0 text-light"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="/" className='text-light'>  Home</Nav.Link>
-            <Nav.Link href="/dashboard" className='text-light'>  Class</Nav.Link>
-            <Nav.Link href="/dashboard" className='text-light'>  Lab</Nav.Link>
-            <Nav.Link href="/dashboard" className='text-light'>  Exam</Nav.Link>
-          </Nav>
-          <Form className="d-flex mx-auto rounded-pill bg-light rounded-pill">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className='border-0 rounded-pill'
-              aria-label="Search"
-            />
-            <SearchIcon className='my-auto p-1 mx-2'/>
-          </Form>
-
 
             <Nav.Link href="/login">
               <button type="" className="btn  px-4 py-2 btn-light ">
@@ -91,6 +67,6 @@ export default function NavBar(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </div>
   );
 }
