@@ -8,6 +8,8 @@ import Hall from './Hall'
 import LogicCircuit from './logicalcircuit/page/App'
 import { useEffect } from 'react';
 import {v4} from 'uuid';
+import Questions from './question_bank/Questions';
+import Forum from './discussion_forum/Forum';
 
 function App() {
   localStorage.setItem('User',v4())
@@ -22,6 +24,8 @@ function App() {
         <Route path="/spring" element={<Spring />} />
         <Route path="/hall" element={<Hall />} />
         <Route path="/circuit" element={<LogicCircuit />} />
+        <Route path="/question" element={<Questions />} />
+        <Route path="/forum" element={<Forum />} />
        
       </Routes>
       </BrowserRouter>
