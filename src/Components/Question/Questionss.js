@@ -14,7 +14,6 @@ export default function Questionss() {
   const [timer, setTimer] = useState(0);
   const { id } = useParams();
   console.log("Exam", exam);
-
   useEffect(() => {
     if (id)
       axios(`/exam/questions/${id}`, {
@@ -29,13 +28,22 @@ export default function Questionss() {
         Authorization: `Bearer ${Cookies.get("jwt")}`,
       },
     }).then((res) => {
+      console.log(res.data);
       setExam(res.data);
-      setTimer(exam?.endsAt - exam?.startsAt);
+      // console.log()
+
+      setTimer(res.data.endsAt - res.data.startsAt);
+      // setTimer(res.data?.endsAt - res.data?.startsAt);
     });
-    setInterval(() => {
-      setTimer((timer) => timer - 1);
-    }, timer);
+    // setInterval(() => {
+    //   setTimer((timer) => timer - 1);
+    // }, 1000);
   }, [id]);
+  // while (timer > 0) {
+  //   setTimeout(() => {
+  //     setTimer((prev) => prev - 1);
+  //   }, 1000);
+  // }
 
   return (
     <div>
@@ -89,7 +97,9 @@ export default function Questionss() {
 
         <div className="w-25 border-start mx-4">
           <div className="p-4 fw-bold ">
-            <h6 className="fw-bold ">Time Duration: {timer} Min</h6>
+            <h6 className="fw-bold ">
+              Time Duration: {parseInt(timer / 1000)} Min
+            </h6>
             <h6 className="fw-bold my-4 ">Expired Time : 06 Hour </h6>
             <h6 className="fw-bold ">Obtain Marks: 00.00 </h6>
           </div>
