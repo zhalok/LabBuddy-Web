@@ -11,7 +11,8 @@ import LabPage from "../LabPage/LabPage";
 import ExamPage from "../ExanPage/ExamPage";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import Forum from "../../discussion_forum/Forum";
+import Question from "../../question_bank/Questions";
 export default function Dashboard() {
   const [ui, setUi] = useState("dashboard");
   const naviage = useNavigate();
@@ -73,6 +74,28 @@ export default function Dashboard() {
             <button
               className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100"
               onClick={() => {
+                setUi("question");
+              }}
+            >
+              {" "}
+              <div className="d-flex">
+                <InfoIcon className="me-2" /> Question{" "}
+              </div>{" "}
+            </button>
+            <button
+              className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100"
+              onClick={() => {
+                setUi("forum");
+              }}
+            >
+              {" "}
+              <div className="d-flex">
+                <InfoIcon className="me-2" /> Forum{" "}
+              </div>{" "}
+            </button>
+            <button
+              className="text-light btn btn-theme-dark px-5 py-2 rounded my-2 w-100"
+              onClick={() => {
                 setUi("pricing");
               }}
             >
@@ -102,6 +125,8 @@ export default function Dashboard() {
           {ui === "class" && <ClassPage></ClassPage>}
           {ui === "lab" && <LabPage></LabPage>}
           {ui === "exam" && <ExamPage></ExamPage>}
+          {ui === "forum" && <Forum />}
+          {ui === "question" && <Question />}
         </div>
       </div>
     </div>

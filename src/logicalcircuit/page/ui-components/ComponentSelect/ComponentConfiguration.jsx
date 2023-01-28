@@ -1,18 +1,18 @@
-import React, { useEffect, useRef } from 'react';
-import Tooltip from 'react-tooltip';
+import React, { useEffect, useRef } from "react";
+import Tooltip from "react-tooltip";
 
-import { Formik, Form as BaseForm, Field } from 'formik';
-import styled from 'styled-components';
+import { Formik, Form as BaseForm, Field } from "formik";
+import styled from "styled-components";
 
-import { ArrowLeft, Close } from '../Icons';
+import { ArrowLeft, Close } from "../Icons";
 import {
   Header,
   Title,
   Content,
   IconButton,
-} from '../Modal/ModalContentLayout';
-import ComponentConfigurationInput from './ComponentConfigurationInput';
-import DraggableComponent from './DraggableComponent';
+} from "../Modal/ModalContentLayout";
+import ComponentConfigurationInput from "./ComponentConfigurationInput";
+import DraggableComponent from "./DraggableComponent";
 
 const DragArea = styled.div`
   display: flex;
@@ -22,10 +22,10 @@ const DragArea = styled.div`
   height: 200px;
   margin-bottom: 32px;
 
-  box-shadow: ${props =>
+  box-shadow: ${(props) =>
     `inset 0 0 20px rgba(${props.error ? 255 : 0}, 0, 0, 0.3)`};
 
-  background-image: ${props => `linear-gradient(
+  background-image: ${(props) => `linear-gradient(
       to right,
       rgba(${props.error ? 255 : 0}, 0, 0, 0.1) 1px,
       transparent 1px,
@@ -79,7 +79,7 @@ const Hint = styled.span`
 
 const SubmitButton = styled.button.attrs(({ ...props }) => ({
   ...props,
-  type: 'submit',
+  type: "submit",
 }))`
   border: none;
   border-radius: 5px;
@@ -98,18 +98,18 @@ const SubmitButton = styled.button.attrs(({ ...props }) => ({
   }
 `;
 
-const getInitialValues = component =>
+const getInitialValues = (component) =>
   Object.fromEntries(
-    component.configurations.map(configuration => [
+    component.configurations.map((configuration) => [
       configuration.name,
       configuration.default,
-    ]),
+    ])
   );
 
 const getFormSubmitLabel = (isValid, editMode) => {
-  if (!isValid) return 'Check form errors';
-  if (editMode) return 'Edit component';
-  return 'Add to circuit';
+  if (!isValid) return "Check form errors";
+  if (editMode) return "Edit component";
+  return "Add to circuit";
 };
 
 const ComponentConfiguration = ({
@@ -146,7 +146,7 @@ const ComponentConfiguration = ({
             <ArrowLeft />
           </IconButton>
         )}
-        <Title>{editMode ? 'Edit' : 'Configure'} component</Title>
+        <Title>{editMode ? "Edit" : "Configure"} component</Title>
         <IconButton
           right
           onClick={handleClose}
@@ -161,12 +161,12 @@ const ComponentConfiguration = ({
       <Content>
         <Formik
           initialValues={getInitialValues(component)}
-          onSubmit={values => {
+          onSubmit={(values) => {
             handleSubmit(null, {
               type: component.type,
               configurations: values,
             });
-            alert("ComponentConfiguration.jsx")
+
             handleClose();
           }}
         >
@@ -183,22 +183,19 @@ const ComponentConfiguration = ({
               </DragArea>
 
               <FormScroll autoComplete="off">
-                {component.configurations.map(
-                  (configuration, index) => (
-                    <Field
-                      key={configuration.name}
-                      component={ComponentConfigurationInput}
-                      innerRef={index === 0 ? firstInputRef : null}
-                      {...configuration}
-                      validate={
-                        configuration.validate
-                          ? value =>
-                              configuration.validate(value, values)
-                          : null
-                      }
-                    />
-                  ),
-                )}
+                {component.configurations.map((configuration, index) => (
+                  <Field
+                    key={configuration.name}
+                    component={ComponentConfigurationInput}
+                    innerRef={index === 0 ? firstInputRef : null}
+                    {...configuration}
+                    validate={
+                      configuration.validate
+                        ? (value) => configuration.validate(value, values)
+                        : null
+                    }
+                  />
+                ))}
               </FormScroll>
 
               <Footer>

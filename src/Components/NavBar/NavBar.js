@@ -11,13 +11,15 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar(props) {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn, setLoggedIn } = props;
   const navigate = useNavigate();
-  useEffect(() => {
-    const jwt = Cookies.get("jwt");
-    if (!jwt) setLoggedIn(false);
-    else setLoggedIn(true);
-  }, []);
+
+  // useEffect(() => {
+  //   const jwt = Cookies.get("jwt");
+  //   if (!jwt) setLoggedIn(false);
+  //   else setLoggedIn(true);
+  // }, []);
 
   const loggedOutNavbar = (
     <>
@@ -47,6 +49,7 @@ export default function NavBar(props) {
           className="btn px-4 py-2 text-light btn-outline-light "
           onClick={() => {
             Cookies.remove("jwt");
+            setLoggedIn(false);
             navigate("/");
           }}
         >

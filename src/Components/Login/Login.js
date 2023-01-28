@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,6 +29,7 @@ const Login = () => {
           expires: 30,
           path: "/",
         });
+        setLoggedIn(true);
         navigate("/dashboard");
       })
       .catch((e) => {

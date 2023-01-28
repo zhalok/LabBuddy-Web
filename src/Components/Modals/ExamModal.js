@@ -52,7 +52,16 @@ export default function ExamModal(props) {
       })
       .then((res) => {
         setLoading(false);
+        setFile(null);
+        setTitle("");
+        setTopic("");
+        setDuration("");
+
+        props.setChange((prevState) => {
+          return { ...prevState };
+        });
         props.onHide();
+
         // console.log(res);
       })
       .catch((e) => setLoading(false));
